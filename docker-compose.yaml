@@ -50,8 +50,8 @@ services:
       file: ./docker-compose/services/frontend.yml
       service: frontend
     environment:
-      NEXT_PUBLIC_NETWORK_NAME: "Arbitrum Local"
-      NEXT_PUBLIC_NETWORK_SHORT_NAME: "Arbitrum Local"
+      NEXT_PUBLIC_NETWORK_NAME: "Arbitrum Orbit Moonlight"
+      NEXT_PUBLIC_NETWORK_SHORT_NAME: "Moonlight"
       NEXT_PUBLIC_AD_BANNER_PROVIDER: "none"
       NEXT_PUBLIC_NETWORK_RPC_URL: http://nitro:8449/
 
@@ -89,7 +89,7 @@ services:
   nitro:
     image: offchainlabs/nitro-node:v3.2.1-d81324d
     ports:
-      - "127.0.0.1:8449:8449"
+      - "8449:8449"
     volumes:
       - "./config:/home/user/.arbitrum"
     command: --conf.file /home/user/.arbitrum/nodeConfig.json

@@ -361,8 +361,8 @@ export const createERC20Bridge = async (
       chainName: config.chainName,
       chainId: config.chainId,
       parentChainId: config.parentChainId,
-      rpcUrl: 'http://localhost:8449',
-      explorerUrl: 'http://localhost',
+      rpcUrl: 'http://orbit.aws.moonstruck.io:8449',
+      explorerUrl: 'http://orbit.aws.moonstruck.io',
       nativeToken: config.nativeToken,
     },
     coreContracts: {

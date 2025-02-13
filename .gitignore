@@ -14,3 +14,4 @@ docker-compose/services/logs
 infra/*.pyc
 infra/venv/
 infra/*.pyc
+.config.env

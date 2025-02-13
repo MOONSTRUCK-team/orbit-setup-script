@@ -13,7 +13,7 @@
     "port": 8451,
     "vhosts": ["*"],
     "corsdomain": ["*"],
-    "api": ["eth", "net", "web3"]
+    "api": ["eth", "net", "web3", "arb", "debug"]
   },
   "node": {
     "data-availability": {

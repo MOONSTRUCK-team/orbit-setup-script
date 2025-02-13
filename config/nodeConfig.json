@@ -5,7 +5,7 @@
   },
   "parent-chain": {
     "connection": {
-      "url": "https://arbitrum-sepolia-rpc.publicnode.com"
+      "url": "https://api.zan.top/node/v1/arb/sepolia/04291bc761b142c2a16d94848ecca48e"
     }
   },
   "http": {
@@ -31,10 +31,7 @@
     },
     "batch-poster": {
       "max-size": 90000,
-      "enable": true,
-      "parent-chain-wallet": {
-        "private-key": ""
-      }
+      "enable": true
     },
     "dangerous": {
       "no-sequencer-coordinator": true,
@@ -43,7 +40,7 @@
     "data-availability": {
       "enable": true,
       "sequencer-inbox-address": "0xCf11AA78940969418467D9d27d20181119842394",
-      "parent-chain-node-url": "https://arbitrum-sepolia-rpc.publicnode.com",
+      "parent-chain-node-url": "https://api.zan.top/node/v1/arb/sepolia/04291bc761b142c2a16d94848ecca48e",
       "rest-aggregator": {
         "enable": true,
         "urls": ["http://das-server:9877"]

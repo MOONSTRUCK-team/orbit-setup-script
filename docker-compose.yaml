@@ -87,15 +87,44 @@ services:
       service: proxy
 
   nitro:
-    image: offchainlabs/nitro-node:v3.2.1-d81324d
+    image: offchainlabs/nitro-node:v3.4.0-d896e9c
+    container_name: nitro
     ports:
       - "8449:8449"
     volumes:
       - "./config:/home/user/.arbitrum"
     command: --conf.file /home/user/.arbitrum/nodeConfig.json
 
+  # Simple nitro node (no archiving, subscribed to sequencer feed)
+  simple-nitro-node:
+    image: offchainlabs/nitro-node:v3.4.0-d896e9c
+    container_name: simple-nitro-node
+    ports:
+      - "8450:8450"
+    volumes:
+      - "./config-simple-node:/home/user/.arbitrum"
+    command: --conf.file /home/user/.arbitrum/nodeConfig.json
+
+  # Full node (archive and sequencer feed)
+  full-node:
+    image: offchainlabs/nitro-node:v3.4.0-d896e9c
+    container_name: full-node
+    ports:
+      - "8451:8451"
+    volumes:
+      - "./config-full-node:/home/user/.arbitrum"
+    command: --conf.file /home/user/.arbitrum/nodeConfig.json
+
+  # Validator node
+  validator:
+    image: offchainlabs/nitro-node:v3.4.0-d896e9c
+    container_name: validator
+    volumes:
+    - "./config-validator:/home/user/.arbitrum"
+    command: --conf.file /home/user/.arbitrum/nodeConfig.json
+
   das-server:
-    image: offchainlabs/nitro-node:v3.2.1-d81324d
+    image: offchainlabs/nitro-node:v3.4.0-d896e9c
     entrypoint: [ "/bin/bash", "/das-server.sh" ]
     volumes:
       - "./config:/home/user/.arbitrum"

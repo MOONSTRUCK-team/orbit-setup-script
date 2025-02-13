@@ -1,0 +1,32 @@
+{
+  "chain": {
+    "info-json": "[{\"chain-id\":44080583577,\"parent-chain-id\":421614,\"parent-chain-is-arbitrum\":true,\"chain-name\":\"Moonlight L3 Chain\",\"chain-config\":{\"homesteadBlock\":0,\"daoForkBlock\":null,\"daoForkSupport\":true,\"eip150Block\":0,\"eip150Hash\":\"0x0000000000000000000000000000000000000000000000000000000000000000\",\"eip155Block\":0,\"eip158Block\":0,\"byzantiumBlock\":0,\"constantinopleBlock\":0,\"petersburgBlock\":0,\"istanbulBlock\":0,\"muirGlacierBlock\":0,\"berlinBlock\":0,\"londonBlock\":0,\"clique\":{\"period\":0,\"epoch\":0},\"arbitrum\":{\"EnableArbOS\":true,\"AllowDebugPrecompiles\":false,\"DataAvailabilityCommittee\":true,\"InitialArbOSVersion\":32,\"GenesisBlockNum\":0,\"MaxCodeSize\":24576,\"MaxInitCodeSize\":49152,\"InitialChainOwner\":\"0xFEb464cE9d5aE50bBe0cE5FF37343361cA4B53dF\"},\"chainId\":44080583577},\"rollup\":{\"bridge\":\"0x078d26F2f2473078F27B32124Fa17B9bCe1A0DBa\",\"inbox\":\"0xEb0F61fAd63a55582063BB7a651fF74C08D1D349\",\"sequencer-inbox\":\"0xCf11AA78940969418467D9d27d20181119842394\",\"rollup\":\"0xEb9661bf5160CF14510C9C94c503b7346651343B\",\"validator-utils\":\"0x7C100c97a54e2D309a194752Df2f66922A802be3\",\"validator-wallet-creator\":\"0xFAd2C6Cb969Ab7B18d78BD63e512b650bb70B570\",\"deployed-at\":119728892}}]",
+    "name": "Moonlight L3 Chain"
+  },
+  "parent-chain": {
+    "connection": {
+      "url": "https://arbitrum-sepolia-rpc.publicnode.com"
+    }
+  },
+  "node": {
+    "data-availability": {
+      "enable": true,
+      "sequencer-inbox-address": "0xCf11AA78940969418467D9d27d20181119842394",
+      "parent-chain-node-url": "https://arbitrum-sepolia-rpc.publicnode.com",
+      "rest-aggregator": {
+        "enable": true,
+        "urls": ["http://das-server:9877"]
+      }
+    },
+    "staker": {
+      "enable": true,
+      "strategy": "MakeNodes",
+      "parent-chain-wallet": {
+        "private-key": ""
+      }
+    }
+  },
+  "execution": {
+    "forwarding-target": "null"
+  }
+}

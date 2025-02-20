@@ -5,39 +5,39 @@
   },
   "parent-chain": {
     "connection": {
-      "url": "https://arbitrum-sepolia-rpc.publicnode.com"
+      "url": "https://api.zan.top/node/v1/arb/sepolia/04291bc761b142c2a16d94848ecca48e"
     }
-  },
-  "http": {
-    "addr": "0.0.0.0",
-    "port": 8450,
-    "vhosts": ["*"],
-    "corsdomain": ["*"],
-    "api": ["eth", "net", "web3"]
   },
   "node": {
     "staker": {
       "enable": false
     },
-    "data-availability": {
+    "batch-poster": {
       "enable": true,
-      "sequencer-inbox-address": "0xCf11AA78940969418467D9d27d20181119842394",
-      "parent-chain-node-url": "https://arbitrum-sepolia-rpc.publicnode.com",
-      "rest-aggregator": {
-        "enable": true,
-        "urls": ["http://mirror-das-server:9878"]
-      }
+      "max-size": 90000,
+      "max-delay": "1m"
     },
     "feed": {
       "input": {
         "url": "ws://sequencer:9000"
       }
+    },
+    "data-availability": {
+      "enable": true,
+      "sequencer-inbox-address": "0xCf11AA78940969418467D9d27d20181119842394",
+      "parent-chain-node-url": "https://api.zan.top/node/v1/arb/sepolia/04291bc761b142c2a16d94848ecca48e",
+      "rest-aggregator": {
+        "enable": true,
+        "urls": ["http://mirror-das-server:9878"]
+      },
+      "rpc-aggregator": {
+        "enable": true,
+        "assumed-honest": 1,
+        "backends": "[{\"url\":\"http://main-das-server:9876\",\"pubkey\":\"YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==\",\"signermask\":1}]"
+      }
     }
   },
   "execution": {
-    "forwarding-target": "http://sequencer:8449",
-    "caching": {
-      "archive": false
-    }
+    "forwarding-target": "null"
   }
 }

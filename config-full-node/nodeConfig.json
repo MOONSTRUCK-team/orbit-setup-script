@@ -16,6 +16,9 @@
     "api": ["eth", "net", "web3", "arb", "debug"]
   },
   "node": {
+    "staker": {
+      "enable": false
+    },
     "data-availability": {
       "enable": true,
       "sequencer-inbox-address": "0xCf11AA78940969418467D9d27d20181119842394",
@@ -27,12 +30,12 @@
     },
     "feed": {
       "input": {
-        "url": "ws://nitro:9000"
+        "url": "ws://sequencer:9000"
       }
     }
   },
   "execution": {
-    "forwarding-target": "http://nitro:8449",
+    "forwarding-target": "http://sequencer:8449",
     "caching": {
       "archive": true
     }

@@ -53,8 +53,7 @@ services:
       NEXT_PUBLIC_NETWORK_NAME: "Arbitrum Orbit Moonlight"
       NEXT_PUBLIC_NETWORK_SHORT_NAME: "Moonlight"
       NEXT_PUBLIC_AD_BANNER_PROVIDER: "none"
-      NEXT_PUBLIC_NETWORK_RPC_URL: http://nitro:8449/
-
+      NEXT_PUBLIC_NETWORK_RPC_URL: http://full-node:8451/
 
   stats-db-init:
     extends:
@@ -86,19 +85,28 @@ services:
       file: ./docker-compose/services/nginx.yml
       service: proxy
 
-  nitro:
+  # Sequencer
+  sequencer:
     image: offchainlabs/nitro-node:v3.4.0-d896e9c
-    container_name: nitro
+    container_name: sequencer
     ports:
       - "8449:8449"
     volumes:
-      - "./config:/home/user/.arbitrum"
+      - "./config-sequencer:/home/user/.arbitrum"
+    command: --conf.file /home/user/.arbitrum/nodeConfig.json
+
+  # Batch poster 
+  batch-poster:
+    image: offchainlabs/nitro-node:v3.4.0-d896e9c
+    container_name: batch-poster
+    volumes:
+      - "./config-batch-poster:/home/user/.arbitrum"
     command: --node.batch-poster.parent-chain-wallet.private-key ${BATCH_POSTER_PRIVATE_KEY} --conf.file /home/user/.arbitrum/nodeConfig.json
 
   # Simple nitro node (no archiving, subscribed to sequencer feed)
-  simple-nitro-node:
+  simple-node:
     image: offchainlabs/nitro-node:v3.4.0-d896e9c
-    container_name: simple-nitro-node
+    container_name: simple-node
     ports:
       - "8450:8450"
     volumes:
@@ -124,7 +132,7 @@ services:
     command: --node.staker.parent-chain-wallet.private-key ${VALIDATOR_PRIVATE_KEY} --conf.file /home/user/.arbitrum/nodeConfig.json
 
   # Main DAS instance
-  das-server:
+  main-das-server:
     image: offchainlabs/nitro-node:v3.4.0-d896e9c
     container_name: main-das-server
     entrypoint: [ "/bin/bash", "/main-das-server.sh" ]
@@ -140,7 +148,7 @@ services:
   mirror-das-server:
     image: offchainlabs/nitro-node:v3.4.0-d896e9c
     depends_on:
-      - das-server
+      - main-das-server
     container_name: mirror-das-server
     entrypoint: [ "/bin/bash", "/mirror-das-server.sh" ]
     volumes:

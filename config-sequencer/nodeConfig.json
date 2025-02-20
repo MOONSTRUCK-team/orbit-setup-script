@@ -5,39 +5,53 @@
   },
   "parent-chain": {
     "connection": {
-      "url": "https://arbitrum-sepolia-rpc.publicnode.com"
+      "url": "https://api.zan.top/node/v1/arb/sepolia/04291bc761b142c2a16d94848ecca48e"
     }
   },
   "http": {
     "addr": "0.0.0.0",
-    "port": 8450,
+    "port": 8449,
     "vhosts": ["*"],
     "corsdomain": ["*"],
-    "api": ["eth", "net", "web3"]
+    "api": ["eth", "net", "web3", "arb", "debug"]
   },
   "node": {
+    "sequencer": true,
+    "delayed-sequencer": {
+      "enable": true,
+      "use-merge-finality": false,
+      "finalize-distance": 1
+    },
+    "feed": {
+      "output": {
+        "enable": true,
+        "addr": "0.0.0.0",
+        "port": 9000
+      }
+    },
+    "dangerous": {
+      "no-sequencer-coordinator": true,
+      "disable-blob-reader": false
+    },
     "staker": {
       "enable": false
     },
     "data-availability": {
       "enable": true,
       "sequencer-inbox-address": "0xCf11AA78940969418467D9d27d20181119842394",
-      "parent-chain-node-url": "https://arbitrum-sepolia-rpc.publicnode.com",
+      "parent-chain-node-url": "https://api.zan.top/node/v1/arb/sepolia/04291bc761b142c2a16d94848ecca48e",
       "rest-aggregator": {
         "enable": true,
         "urls": ["http://mirror-das-server:9878"]
       }
-    },
-    "feed": {
-      "input": {
-        "url": "ws://sequencer:9000"
-      }
     }
   },
   "execution": {
-    "forwarding-target": "http://sequencer:8449",
-    "caching": {
-      "archive": false
+    "forwarding-target": "",
+    "sequencer": {
+      "enable": true,
+      "max-tx-data-size": 85000,
+      "max-block-speed": "250ms"
     }
   }
 }

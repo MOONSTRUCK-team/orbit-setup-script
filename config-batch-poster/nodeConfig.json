@@ -15,7 +15,7 @@
     "batch-poster": {
       "enable": true,
       "max-size": 90000,
-      "max-delay": "1m"
+      "max-delay": "1h"
     },
     "feed": {
       "input": {

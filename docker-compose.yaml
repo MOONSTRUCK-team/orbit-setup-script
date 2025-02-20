@@ -30,7 +30,7 @@ services:
     environment:
         CHAIN_TYPE: "arbitrum"
         ETHEREUM_JSONRPC_HTTP_URL: http://full-node:8451/
-        ETHEREUM_JSONRPC_TRACE_URL: http://full-node:8451/
+        # ETHEREUM_JSONRPC_TRACE_URL: http://full-node:8451/
         INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER: "true"
 
   visualizer:
@@ -93,7 +93,7 @@ services:
       - "8449:8449"
     volumes:
       - "./config:/home/user/.arbitrum"
-    command: --node.batch-poster.parent-chain-wallet.private-key ${BATCH_POSTER_PRIVATE_KEY}   --conf.file /home/user/.arbitrum/nodeConfig.json
+    command: --node.batch-poster.parent-chain-wallet.private-key ${BATCH_POSTER_PRIVATE_KEY} --conf.file /home/user/.arbitrum/nodeConfig.json
 
   # Simple nitro node (no archiving, subscribed to sequencer feed)
   simple-nitro-node:
@@ -123,13 +123,29 @@ services:
     - "./config-validator:/home/user/.arbitrum"
     command: --node.staker.parent-chain-wallet.private-key ${VALIDATOR_PRIVATE_KEY} --conf.file /home/user/.arbitrum/nodeConfig.json
 
+  # Main DAS instance
   das-server:
     image: offchainlabs/nitro-node:v3.4.0-d896e9c
-    entrypoint: [ "/bin/bash", "/das-server.sh" ]
+    container_name: main-das-server
+    entrypoint: [ "/bin/bash", "/main-das-server.sh" ]
     volumes:
       - "./config:/home/user/.arbitrum"
-      - "./das-server.sh:/das-server.sh"
+      - "./main-das-server.sh:/main-das-server.sh"
       - "./das-data:/home/user/das-data"
     ports:
-      - "9876:9876"
-      - "9877:9877"
+      - "9876:9876" # RPC
+      - "9877:9877" # REST
+
+  # Mirror DAS instance
+  mirror-das-server:
+    image: offchainlabs/nitro-node:v3.4.0-d896e9c
+    depends_on:
+      - das-server
+    container_name: mirror-das-server
+    entrypoint: [ "/bin/bash", "/mirror-das-server.sh" ]
+    volumes:
+      - "./config:/home/user/.arbitrum"
+      - "./mirror-das-server.sh:/mirror-das-server.sh"
+      - "./mirror-das-data:/home/user/das-data"
+    ports:
+      - "9878:9878"

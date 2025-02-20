@@ -43,7 +43,7 @@
       "parent-chain-node-url": "https://api.zan.top/node/v1/arb/sepolia/04291bc761b142c2a16d94848ecca48e",
       "rest-aggregator": {
         "enable": true,
-        "urls": ["http://das-server:9877"]
+        "urls": ["http://mirror-das-server:9878"]
       },
       "rpc-aggregator": {
         "enable": true,

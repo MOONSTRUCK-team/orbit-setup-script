@@ -22,7 +22,7 @@
       "parent-chain-node-url": "https://arbitrum-sepolia-rpc.publicnode.com",
       "rest-aggregator": {
         "enable": true,
-        "urls": ["http://das-server:9877"]
+        "urls": ["http://mirror-das-server:9878"]
       }
     },
     "feed": {

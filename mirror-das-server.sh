@@ -22,7 +22,7 @@ if jq -e '.node | has("data-availability")' /home/user/.arbitrum/nodeConfig.json
      --data-availability.rest-aggregator.enable \
      --data-availability.rest-aggregator.urls "http://das-server:9877" \
      --data-availability.rest-aggregator.sync-to-storage.eager \
-     --data-availability.rest-aggregator.sync-to-storage.eager-lower-bound-block "125582250" \
+     --data-availability.rest-aggregator.sync-to-storage.eager-lower-bound-block "119728892" \
      --data-availability.rest-aggregator.sync-to-storage.state-dir /home/user/data/syncState \
      --data-availability.local-file-storage.enable \
      --data-availability.local-file-storage.data-dir /home/user/das-data \

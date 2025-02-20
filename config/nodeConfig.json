@@ -31,11 +31,15 @@
     },
     "batch-poster": {
       "max-size": 90000,
-      "enable": true
+      "enable": true,
+      "max-delay": "1h"
     },
     "dangerous": {
       "no-sequencer-coordinator": true,
       "disable-blob-reader": false
+    },
+    "staker": {
+      "enable": false
     },
     "data-availability": {
       "enable": true,

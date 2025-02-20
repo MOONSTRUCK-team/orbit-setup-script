@@ -147,5 +147,6 @@ services:
       - "./config:/home/user/.arbitrum"
       - "./mirror-das-server.sh:/mirror-das-server.sh"
       - "./mirror-das-data:/home/user/das-data"
+      - "./mirror-das-data/syncState:/home/user/syncState"
     ports:
       - "9878:9878"

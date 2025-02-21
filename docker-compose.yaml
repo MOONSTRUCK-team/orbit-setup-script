@@ -30,7 +30,7 @@ services:
     environment:
         CHAIN_TYPE: "arbitrum"
         ETHEREUM_JSONRPC_HTTP_URL: http://full-node:8451/
-        # ETHEREUM_JSONRPC_TRACE_URL: http://full-node:8451/
+        ETHEREUM_JSONRPC_TRACE_URL: http://full-node:8451/
         INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER: "true"
 
   visualizer:
@@ -91,6 +91,7 @@ services:
     container_name: sequencer
     ports:
       - "8449:8449"
+      - "9000:9000"
     volumes:
       - "./config-sequencer:/home/user/.arbitrum"
     command: --conf.file /home/user/.arbitrum/nodeConfig.json
